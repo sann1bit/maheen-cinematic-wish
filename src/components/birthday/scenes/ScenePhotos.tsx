@@ -50,11 +50,13 @@ export default function ScenePhotos({ onNext }: { onNext: () => void }) {
               onPointerDown={handleTap}
               className="soft-card relative w-[72%] shrink-0 snap-center overflow-hidden bg-cream sm:w-[46%] lg:w-[31%]"
             >
-              <SafeImage
-                src={p.photo}
-                alt={`${first} — ${p.caption}`}
-                className="h-[46vh] w-full object-cover"
-              />
+              <div className="h-[46vh] w-full bg-blush/40">
+                <SafeImage
+                  src={p.photo}
+                  alt={`${first} — ${p.caption}`}
+                  className="h-full w-full object-contain"
+                />
+              </div>
               <figcaption className="px-5 py-4 text-sm leading-snug text-espresso/80">
                 {p.caption}
               </figcaption>

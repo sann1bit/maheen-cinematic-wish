@@ -100,7 +100,7 @@ function BirthdayExperience() {
         Happy birthday, {HER_NAME} — from {MY_NAME}
       </h1>
 
-      <Suspense fallback={<div className="absolute inset-0 bg-plum" />}>
+      <Suspense fallback={<div className="absolute inset-0 bg-ivory" />}>
         <AnimatePresence mode="wait">
           {scene === 0 && <SceneLoading key="s0" onDone={() => go(1)} />}
           {scene === 1 && <SceneThreshold key="s1" onNext={next} />}

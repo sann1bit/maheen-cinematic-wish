@@ -157,8 +157,15 @@ export function Sticker({
 
 /* ---------------- Floating particles ---------------- */
 
+export function useMounted() {
+  const [m, setM] = useState(false);
+  useEffect(() => setM(true), []);
+  return m;
+}
+
 export function Particles({ tone = "light", count = 16 }: { tone?: "light" | "dark"; count?: number }) {
   const reduce = useReducedMotion();
+  const mounted = useMounted();
   const [bits] = useState(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i,
@@ -169,7 +176,7 @@ export function Particles({ tone = "light", count = 16 }: { tone?: "light" | "da
       kind: i % 3,
     })),
   );
-  if (reduce) return null;
+  if (reduce || !mounted) return null;
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       {bits.map((b) => (
@@ -318,6 +325,7 @@ export function SafeImage({
 
 export function Confetti({ active, gentle = false }: { active: boolean; gentle?: boolean }) {
   const reduce = useReducedMotion();
+  const mounted = useMounted();
   const [pieces] = useState(() =>
     Array.from({ length: 40 }, (_, i) => ({
       id: i,
@@ -328,7 +336,7 @@ export function Confetti({ active, gentle = false }: { active: boolean; gentle?:
       color: ["var(--gold)", "var(--blush)", "var(--wine)"][i % 3] as string,
     })),
   );
-  if (!active || reduce) return null;
+  if (!active || reduce || !mounted) return null;
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 z-20 overflow-hidden">
       {pieces.map((p) => (

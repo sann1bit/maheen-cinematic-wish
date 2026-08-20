@@ -285,7 +285,7 @@ export function SafeImage({
   className = "",
   monogram = "M",
 }: {
-  src?: string;
+  src?: string | undefined;
   alt: string;
   className?: string;
   monogram?: string;

@@ -132,13 +132,84 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+/* ---- Birthday experience design tokens ---- */
+:root {
+  --ivory: oklch(0.963 0.017 79.5);
+  --blush: oklch(0.895 0.036 5.8);
+  --plum: oklch(0.212 0.043 340);
+  --wine: oklch(0.399 0.115 12.5);
+  --gold: oklch(0.734 0.075 78.5);
+  --espresso: oklch(0.294 0.041 340);
+  --cream: oklch(0.943 0.014 55);
+
+  --font-display: "Fraunces", "Cormorant Garamond", serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Dancing Script", cursive;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-blush: var(--blush);
+  --color-plum: var(--plum);
+  --color-wine: var(--wine);
+  --color-gold: var(--gold);
+  --color-espresso: var(--espresso);
+  --color-cream: var(--cream);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-script: var(--font-script);
+}
+
+@utility paper-grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+  }
+}
+
+@utility soft-card {
+  border-radius: 1.75rem;
+  box-shadow:
+    0 18px 40px -24px color-mix(in oklab, var(--espresso) 55%, transparent),
+    0 2px 10px -6px color-mix(in oklab, var(--espresso) 30%, transparent);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--ivory);
+    color: var(--espresso);
+    font-family: var(--font-body);
+    overscroll-behavior: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

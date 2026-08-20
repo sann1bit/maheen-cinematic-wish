@@ -79,11 +79,12 @@ export default function SceneHug({ onNext }: { onNext: () => void }) {
               className="absolute inset-0 flex items-center justify-center"
             >
               <div className="-mr-6">
-                <Bear color="var(--wine)" blushColor="var(--blush)" label={MY_NAME} />
+                <Bear color="var(--wine)" blushColor="var(--blush)" label="" />
               </div>
               <div className="-ml-6">
-                <Bear color="var(--gold)" blushColor="var(--blush)" label={first} />
+                <Bear color="var(--gold)" blushColor="var(--blush)" label="" />
               </div>
+
               {!reduce &&
                 Array.from({ length: 16 }).map((_, i) => (
                   <motion.span
